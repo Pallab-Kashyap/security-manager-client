@@ -86,7 +86,7 @@ const AddDataForm = ({ data, setIsAddData }: { data: Data | null, setIsAddData: 
     }
 
   return (
-    <div className="absolute right-4 sm:right-8 top-32 flex flex-col space-y-2 bg-white p-5 rounded-lg">
+    <div className="absolute right-4 sm:right-8 top-32 sm:top-24 flex flex-col space-y-2 bg-white p-5 rounded-lg">
    
       <Input
         type="text"

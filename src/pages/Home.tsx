@@ -24,24 +24,23 @@ const Home = () => {
   const [searchResults, setSearchResults] = useState(data);
 
   useEffect(() => {
+
     (async () => {
-      if (data && data.length > 0) {
-        console.log(data);
-        setSearchResults(data);
-      } else {
+      if (!data || data.length === 0) {
         const res = await getData();
 
-        if (!res) {
-          return navigate("/login");
+        if (res && Object.keys(res).length > 0) {
+          dispatch(addData(res)); 
         }
-
-        if (Object.keys(res).length > 0) {
-          dispatch(addData(res));
-          setSearchResults(data);
-        }
+      } else {
+        setSearchResults(data); 
       }
     })();
-    console.log("chnage in dara");
+
+  }, [data]);
+
+  useEffect(() => {
+    setSearchResults(data);
   }, [data]);
 
   const handleSearchResults = (results: typeof data) => {
@@ -49,9 +48,9 @@ const Home = () => {
   };
 
   const handleLogout = async () => {
-    logout()
-    navigate('/login')
-  }
+    logout();
+    navigate("/login");
+  };
 
   return (
     <div className="sm:px-10 p-6  py-5">
@@ -84,26 +83,27 @@ const Home = () => {
         </div>
       </nav>
 
-
       <div className="sm:hidden flex gap-2 mb-6">
         <SearchBar data={data} onSearchResults={handleSearchResults} />
- 
-      <div className="">
-        <button
-          onClick={() => setIsAddData((prev) => !prev)}
-          className="sm:hidden bg-gradient-to-tr from-purple-400 via-pink-500 to-red-500 text-white py-2 whitespace-nowrap px-2 sm:px-4 rounded-md font-semibold text-sm"
-        >
-          Add Data
-        </button>
-        {isAddData && <AddDataForm data={update} setIsAddData={setIsAddData} />}
-      </div>
+
+        <div className="">
+          <button
+            onClick={() => setIsAddData((prev) => !prev)}
+            className="sm:hidden bg-gradient-to-tr from-purple-400 via-pink-500 to-red-500 text-white py-2 whitespace-nowrap px-2 sm:px-4 rounded-md font-semibold text-sm"
+          >
+            Add Data
+          </button>
+          {isAddData && (
+            <AddDataForm data={update} setIsAddData={setIsAddData} />
+          )}
+        </div>
       </div>
 
       <div className="grid sm:grid-cols-3 gap-10">
         {searchResults && searchResults.length > 0 ? (
-          searchResults.map((d) => (
+          searchResults.map((data) => (
             <DataCard
-              data={d}
+              data={data}
               setIsAddData={setIsAddData}
               setUpdate={setUpdate}
             />

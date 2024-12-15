@@ -17,11 +17,11 @@ const dataSlice = createSlice({
             return state
         },
         addOne: (state,  action: PayloadAction<Data>) => {
-            console.log('state', state);
             state.unshift(action.payload);
-            console.log(state);
+
         },
         deleteOne: (state, action: PayloadAction<string>) => {
+            console.log(state);
             return state.filter(e => e._id !== action.payload);
         },
     }
