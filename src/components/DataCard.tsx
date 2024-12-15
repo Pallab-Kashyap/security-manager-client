@@ -41,7 +41,21 @@ const DataCard: FC<DataProps> = ({ data, setIsAddData, setUpdate }) => {
   return (
     <div
       key={data._id}
-    className="h-fit p-3 flex-1 text-black rounded-xl hover:shadow-lg shadow-violet-400 bg-gradient-to-tr from-white via-pink-100 to-purple-400 sm:w-full">
+    className="h-fit p-3 flex-1 text-black rounded-xl hover:shadow-lg shadow-violet-400 bg-gradient-to-tr from-white via-pink-100 to-purple-400 sm:w-full"
+    style={{
+      // background: 'linear-gradient(135deg, #fbc2eb, #a1c4fd)'
+      // background: `linear-gradient(to bottom, #ff7e5f, #feb47b)`
+      // background: 'rgba(255, 255, 255, 0.7)', 
+      // background: 'linear-gradient(to top left, #ffd700, #ffac33)'
+      // background: 'linear-gradient(to top right, #e0f7fa, #80deea)'
+// background: 'linear-gradient(to bottom left, #ffe6e6, #ff9a9e)'
+// background: 'linear-gradient(to top, #ffffff, #f7f7f7)',
+boxShadow: '0px 8px 15px rgba(0, 0, 0, 0.1)',
+background: 'linear-gradient(to right, #e0c3fc, #8ec5fc)'
+
+    }}
+    >
+      
       <div>
         <p className="text-2xl mb-3 max-w-[20ch] sm:max-w-[25ch] overflow-scroll">{data.site}</p>
       </div>
@@ -86,7 +100,7 @@ const DataCard: FC<DataProps> = ({ data, setIsAddData, setUpdate }) => {
                 className="border-2 border-black text-sm px-2 h-6 rounded-md">Edit</button>
                 <button 
                 onClick={handleDelete}
-                className="border-2 border-black text-sm px-3 h-6 rounded-md"><RiDeleteBin6Line /></button>
+                className="border-2 border-black text-sm px-3 h-6 rounded-md text-red-600 "><RiDeleteBin6Line /></button>
                                 </div>
             </div>
       </div>

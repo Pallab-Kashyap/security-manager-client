@@ -90,7 +90,7 @@ const AddDataForm = ({ data, setIsAddData }: { data: Data | null, setIsAddData: 
    
       <Input
         type="text"
-        placeholder="Site"
+        placeholder="Site Name"
         value={site}
         setValue={setSite}
         className=""

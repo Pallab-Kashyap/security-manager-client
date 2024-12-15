@@ -9,7 +9,9 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* background-color: #242424; */
+  /* background-color: black; */
+
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -25,4 +27,27 @@
 
 *::-webkit-scrollbar{
   display: none;
+}
+
+body{
+  min-height: 100vh;
+  /* background: radial-gradient(circle at bottom right, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd); */
+  background-size: cover;
+  /* Body */
+/* background: linear-gradient(to top right, #ff9a9e, #fad0c4, #fbc2eb); */
+/* Body */
+/* background: radial-gradient(circle, #3a1c71, #d76d77, #ffaf7b); */
+/* Body */
+/* background: linear-gradient(to bottom, #36d1dc, #5b86e5); */
+/* Body */
+/* background: linear-gradient(to right, #ff512f, #dd2476); */
+/* Body */
+/* background: linear-gradient(to bottom, #e0e0e0, #bdbdbd); */
+/* Body */
+/* background: linear-gradient(to top, #fbc2eb, #a6c1ee); */
+
+/* Card */
+/* background: linear-gradient(to right, #e0c3fc, #8ec5fc); */
+/* background: linear-gradient(to right, #e0c3fc, #8ec5fc); */
+
 }

@@ -16,7 +16,6 @@ import { logout } from "../API/auth";
 
 const Home = () => {
   const data = useSelector((state: RootState) => state.data);
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [update, setUpdate] = useState<Data | null>(null);
