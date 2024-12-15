@@ -39,7 +39,9 @@ const DataCard: FC<DataProps> = ({ data, setIsAddData, setUpdate }) => {
     }}
 
   return (
-    <div className="h-fit p-3 flex-1 text-black rounded-xl hover:shadow-lg shadow-violet-400 bg-gradient-to-tr from-white via-pink-100 to-purple-400 sm:w-full">
+    <div
+      key={data._id}
+    className="h-fit p-3 flex-1 text-black rounded-xl hover:shadow-lg shadow-violet-400 bg-gradient-to-tr from-white via-pink-100 to-purple-400 sm:w-full">
       <div>
         <p className="text-2xl mb-3 max-w-[20ch] sm:max-w-[25ch] overflow-scroll">{data.site}</p>
       </div>
