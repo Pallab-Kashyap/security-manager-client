@@ -16,7 +16,6 @@ const Login = () => {
 
   const handleSubmit = async(Username: string, passwords: string) => {
     const res = await login(Username, passwords)
-    console.log(res);
     if(res.status){
       dispatch(addUser(res))
       navigate('/')

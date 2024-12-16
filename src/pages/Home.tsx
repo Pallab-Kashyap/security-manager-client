@@ -15,28 +15,26 @@ import { MdLogout } from "react-icons/md";
 import { logout } from "../API/auth";
 
 const Home = () => {
-  const data = useSelector((state: RootState) => state.data);
+  let data = useSelector((state: RootState) => state.data);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [update, setUpdate] = useState<Data | null>(null);
   const [isAddData, setIsAddData] = useState(false);
-  const [searchResults, setSearchResults] = useState(data);
+  const [searchResults, setSearchResults] = useState<Data[] | null>(null);
 
   useEffect(() => {
-
     (async () => {
       if (!data || data.length === 0) {
         const res = await getData();
-        if(!res) navigate('/login')
-          
+        if (!res) navigate("/login");
+
         if (res && Object.keys(res).length > 0) {
-          dispatch(addData(res)); 
+          dispatch(addData(res));
         }
       } else {
-        setSearchResults(data); 
+        setSearchResults(data);
       }
     })();
-
   }, [data]);
 
   useEffect(() => {
@@ -103,6 +101,7 @@ const Home = () => {
         {searchResults && searchResults.length > 0 ? (
           searchResults.map((data) => (
             <DataCard
+              key={data._id}
               data={data}
               setIsAddData={setIsAddData}
               setUpdate={setUpdate}

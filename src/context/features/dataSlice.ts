@@ -9,8 +9,8 @@ const dataSlice = createSlice({
     name: 'data',
     initialState,
     reducers : {
-        addData: (state,  action: PayloadAction<Data[]>) => {
-            return [...state, ...action.payload];
+        addData: (_state, action: PayloadAction<Data[]>) => {
+            return action.payload;
         },
         updateDataContext: (state, action: PayloadAction<Data>) => {
             state = state.map(e => e._id === action.payload._id ? action.payload : e)
@@ -21,7 +21,7 @@ const dataSlice = createSlice({
 
         },
         deleteOne: (state, action: PayloadAction<string>) => {
-            console.log(state);
+            
             return state.filter(e => e._id !== action.payload);
         },
     }

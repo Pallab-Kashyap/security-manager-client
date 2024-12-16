@@ -12,7 +12,6 @@ try {
        
         const data = { username, password}
         const res = await axiosInstance.post<any>('/user/login', data)
-        console.log('fjoiwefiwejfweofiewiof',res.data.message);
         if(res.status === 200 || res.status ===201)
             return {status: true,  message: res.data.message}
 

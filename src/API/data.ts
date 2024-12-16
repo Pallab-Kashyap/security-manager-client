@@ -26,8 +26,6 @@ const createData = async(data: Data) => {
 
     try {
 
-        data._id = undefined
-
         const res = await axiosInstance.post<Response>('/data', data)
 
             return {
@@ -47,7 +45,6 @@ const createData = async(data: Data) => {
 const updateData = async(data: Data) => {
 
     try {
-        console.log(data);
         const url = `/data/${data._id}`
 
         const res = await axiosInstance.put<Response>(url, data)
@@ -83,7 +80,3 @@ export {
     deleteData
 }
 
-// {
-//     message: "strimg",
-//     data: Array, json   
-// }
