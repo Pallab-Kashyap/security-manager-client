@@ -27,7 +27,8 @@ const Home = () => {
     (async () => {
       if (!data || data.length === 0) {
         const res = await getData();
-
+        if(!res) navigate('/login')
+          
         if (res && Object.keys(res).length > 0) {
           dispatch(addData(res)); 
         }

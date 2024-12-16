@@ -15,12 +15,7 @@ const getData = async() => {
 try {
     
     const res = await axiosInstance.get<Res1>('/data')
-
-    if(res.status === 200 || res.status ===201){
         return res.data.data
-    }
-
-    return false
 } catch (error) {
 return false
 }
@@ -72,8 +67,8 @@ const updateData = async(data: Data) => {
 const deleteData = async( id: string) => {
     try{
         const url = `/data/${id}`
-        const res = await axiosInstance.delete(url)
-        console.log(res);
+        await axiosInstance.delete(url)
+
         return true
     }
     catch{
