@@ -11,8 +11,8 @@ import { Data } from "../constants";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SearchBar from "../components/SearchBar";
-import { MdLogout } from "react-icons/md";
 import { logout } from "../API/auth";
+import UserProfile from "../components/UserProfile";
 
 const Home = () => {
   let data = useSelector((state: RootState) => state.data);
@@ -45,26 +45,31 @@ const Home = () => {
     setSearchResults(results);
   };
 
-  const handleLogout = async () => {
-    logout();
-    navigate("/login");
-  };
+  let username = "UserName";
 
   return (
-    <div className="sm:px-10 p-6  py-5">
+    <div
+      // onClick={(e) => {e.currentTarget.id === 'home' && setIsAddData(false)}}  
+      id="home"
+    className="flex flex-col px-4 sm:px-10   py-5 min-h-screen">
       <ToastContainer autoClose={3000} position="top-right" />
-      <nav className="flex justify-between items-center sm:mb-10 mb-2">
+      <nav className="flex justify-between items-center sm:mb-3 ">
         <h1 className="text-2xl sm:text-4xl w-fit h-12 font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-transparent bg-clip-text">
           Security Manager
         </h1>
-        <div className="hidden sm:block">
+        <UserProfile username={username} logout={logout} delete={logout} />
+      </nav>
+
+      <div className="flex justify-between items-start sm:mb-10 mb-3">
+        <div className="hidden sm:block pt-2">
           <SearchBar data={data} onSearchResults={handleSearchResults} />
         </div>
 
-        <div className="sm:space-x-4 flex">
           <button
-            onClick={() => setIsAddData((prev) => !prev)}
-            className=" hidden sm:block bg-gradient-to-tr from-purple-400 via-pink-500 to-red-500 text-white py-2 whitespace-nowrap px-2 sm:px-4 rounded-md font-semibold text-sm"
+            onClick={(e) => {
+              e.stopPropagation()
+              setIsAddData((prev) => !prev)}}
+            className=" hidden sm:block bg-gradient-to-tr from-purple-400 via-pink-500 to-red-500 text-white whitespace-nowrap px-2 sm:px-4 rounded-md font-semibold text-sm  h-10"
           >
             Add Data
           </button>
@@ -72,21 +77,22 @@ const Home = () => {
             <AddDataForm data={update} setIsAddData={setIsAddData} />
           )}
 
-          <button
+          {/* <button
             onClick={handleLogout}
             className=" sm:border-2 border-white rounded-full text-white p-1 sm:p-2 text-xl font-semibold sm:text-sm "
           >
             <MdLogout />
-          </button>
-        </div>
-      </nav>
+          </button> */}
+      </div>
 
+      {/* Mobile */}
       <div className="sm:hidden flex gap-2 mb-6">
         <SearchBar data={data} onSearchResults={handleSearchResults} />
 
         <div className="">
           <button
             onClick={() => setIsAddData((prev) => !prev)}
+            id="addData"
             className="sm:hidden bg-gradient-to-tr from-purple-400 via-pink-500 to-red-500 text-white py-2 whitespace-nowrap px-2 sm:px-4 rounded-md font-semibold text-sm"
           >
             Add Data
@@ -97,7 +103,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="grid sm:grid-cols-3 gap-10">
+      <div className="grid sm:grid-cols-3 gap-10 flex-1 justify-center">
         {searchResults && searchResults.length > 0 ? (
           searchResults.map((data) => (
             <DataCard
@@ -108,7 +114,7 @@ const Home = () => {
             />
           ))
         ) : (
-          <div className="flex items-center justify-center w-screen h-[80vh]">
+          <div className="flex items-center justify-center col-span-3">
             <p className="text-2xl">No Data</p>
           </div>
         )}

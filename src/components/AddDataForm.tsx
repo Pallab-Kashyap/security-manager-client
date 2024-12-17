@@ -76,7 +76,9 @@ const AddDataForm = ({
   };
 
   return (
-    <div className="absolute right-4 sm:right-8 top-32 sm:top-24 flex flex-col space-y-2 bg-white p-5 rounded-lg">
+    <form 
+      onClick={e => { e.stopPropagation() }}
+    className="absolute right-4 sm:right-10 top-32 sm:top-36 flex flex-col space-y-2 bg-white p-5 rounded-lg z-30">
       <Input
         type="text"
         placeholder="Site Name"
@@ -120,7 +122,7 @@ const AddDataForm = ({
       >
         Submit
       </button>
-    </div>
+    </form>
   );
 };
 

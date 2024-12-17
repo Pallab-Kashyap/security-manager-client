@@ -16,6 +16,7 @@ const Input:FC<InputProps> = ({type, placeholder, className, value, setValue}) =
         required
         value={value}
         onChange={(e) => setValue(e.target.value)}
+        onClick={(e) => { e.stopPropagation() }}
         className={`${className} px-4 py-2 rounded-lg bg-gray-100/70 text-black`}
     />
   )

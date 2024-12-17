@@ -7,6 +7,8 @@ import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { deleteOne } from "../context/features/dataSlice";
 import { IoInformationCircleOutline } from "react-icons/io5";
+import { FaRegEyeSlash } from "react-icons/fa";
+import { FaRegEye } from "react-icons/fa";
 
 interface DataProps {
   data: Data;
@@ -14,10 +16,29 @@ interface DataProps {
   setUpdate: React.Dispatch<React.SetStateAction<Data | null>>;
 }
 
+const DisplayOnHover = ({ content }: { content: string }) => {
+
+  const handleCopy = (text: string) => {
+    window.navigator.clipboard.writeText(text);
+    toast(`Copid ${text}`, {
+      autoClose: 1000,
+      hideProgressBar: true,
+    });
+  };
+  return (
+    <div
+    onClick={() => handleCopy(content)}
+    className="absolute max-w-72 text-wrap break-words hidden sm:group-hover:block text-black bg-white px-2 y-3 rounded-lg border border-black z-10">
+      {content}
+    </div>
+  );
+};
+
 const DataCard: FC<DataProps> = ({ data, setIsAddData, setUpdate }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [showOther, setShowOther] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleUpdate = () => {
     setUpdate(data);
@@ -37,52 +58,100 @@ const DataCard: FC<DataProps> = ({ data, setIsAddData, setUpdate }) => {
     }
   };
 
+  const handleCopy = (text: string) => {
+    window.navigator.clipboard.writeText(text);
+    toast(`Copid ${text}`, {
+      autoClose: 1000,
+      hideProgressBar: true,
+    });
+  };
+
   return (
     <div
       key={data._id}
-      className="h-fit p-3 flex-1 text-black rounded-xl hover:shadow-lg shadow-violet-400 bg-gradient-to-tr from-white via-pink-100 to-purple-400 sm:w-full"
+      className="h-fit w-fit p-3 flex-1 text-black rounded-xl hover:shadow-lg shadow-violet-400 bg-gradient-to-tr from-white via-pink-100 to-purple-400 sm:w-full"
       style={{
         boxShadow: "0px 8px 15px rgba(0, 0, 0, 0.1)",
         background: "linear-gradient(to right, #e0c3fc, #8ec5fc)",
       }}
     >
-      <div>
-        <p className="text-2xl mb-3 max-w-[20ch] sm:max-w-[25ch] overflow-scroll">
+      <div className="relative group">
+        <p
+          onClick={() => handleCopy(data.site)}
+          className="text-2xl mb-3 max-w-[23ch] sm:max-w-[25ch] break-words sm:truncate"
+        >
           {data.site}
         </p>
+        <DisplayOnHover content={data.site} />
       </div>
 
-      <div className="p-3 space-y-2 border border-black rounded-xl">
+      <div className="p-3 space-y-2 border border-black rounded-xl ">
         <ul className="space-y-2">
-          <li>
-            <p className="text-xs">Username</p>
-            <p className="text-lg max-w-[30ch] break-words">{data.username}</p>
+          <li className="relative group">
+            <p className="text-xs ">Username</p>
+            <p
+              onClick={() => handleCopy(data.username)}
+              className="text-lg max-w-[28ch] sm:max-w-[35ch] break-words sm:truncate"
+            >
+              {data.username}
+            </p>
+            <DisplayOnHover content={data.username} />
           </li>
-          <li>
+          <li className="relative group">
             <p className="text-xs">email</p>
-            <p className="text-lg max-w-[30ch] break-words">{data.email}</p>
+            <p
+              onClick={() => handleCopy(data.email)}
+              className="text-lg max-w-[28ch] sm:max-w-[35ch] break-words sm:truncate"
+            >
+              {data.email}
+            </p>
+            <DisplayOnHover content={data.email} />
           </li>
-
-          <li>
+          <li className="relative group">
             <p className="text-xs">Password</p>
-            <p className="text-lg max-w-[30ch] break-words">{data.password}</p>
+            <div className="flex justify-between">
+              <p
+                onClick={() => {
+                  showPassword && handleCopy(data.username);
+                }}
+                className="text-lg max-w-[25ch] sm:max-w-[28ch] break-words sm:truncate"
+              >
+                {showPassword ? data.password : "********"}
+              </p>
+              {showPassword && <DisplayOnHover content={data.password} />}
+
+              <button
+                onClick={() => {
+                  setShowPassword((prev) => !prev);
+                }}
+              >
+                {showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
+              </button>
+            </div>
           </li>
         </ul>
         <div className="flex justify-between">
           <div className="reletive group space-y-2">
             <p
-              onClick={() => setShowOther((prev) => !prev)}
+            onClick={() => {
+              setShowOther((prev) => !prev)
+              data.others && handleCopy(data.others)
+            }}
               className="text-xl"
             >
               {<IoInformationCircleOutline />}
             </p>
 
-            <div className="absolute  hidden max-w-80 break-words group-hover:block text-black bg-white px-2 y-3 rounded-lg border border-black">
+            <div
+              className={`absolute max-w-80 text-wrap break-words hidden sm:group-hover:block text-black bg-white px-2 y-3 rounded-lg border border-black`}
+            >
               {data.others || "No info"}
             </div>
 
             {showOther && (
-              <div className="absolute   max-w-80 break-words  text-black bg-white px-2 y-3 rounded-lg border border-black">
+              <div
+                className={`absolute max-w-80 text-wrap break-words text-black bg-white px-2 y-3 rounded-lg border border-black`}
+              >
                 {data.others || "No info"}
               </div>
             )}

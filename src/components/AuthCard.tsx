@@ -17,7 +17,7 @@ const AuthCard: FC<AuthType> = ({ type, handleSubmit }) => {
     const [password, setPassword] = useState('');
 
   return (
-    <div className="absolute bg-white/40 shadow-lg max-w-80 sm:max-w-96 bg-white text-black h-fit space-y-5 p-4 py-8 sm:p-8 rounded-xl">
+    <form className="absolute bg-white/40 shadow-lg max-w-80 sm:max-w-96 bg-white text-black h-fit space-y-5 p-4 py-8 sm:p-8 rounded-xl">
       <div className="flex place-content-center">
         <img src={loginIcon} alt="" className="h-10" />
       </div>
@@ -47,7 +47,10 @@ const AuthCard: FC<AuthType> = ({ type, handleSubmit }) => {
       } */}
       </div>
       <button
-        onClick={() => handleSubmit(username, password)}
+        type="submit"
+        onClick={(e) => {
+          e.preventDefault()
+          handleSubmit(username, password)}}
         className="text-center w-full bg-black text-white py-2 rounded-lg mt-2"
       >Submit</button>
        {
@@ -71,7 +74,7 @@ const AuthCard: FC<AuthType> = ({ type, handleSubmit }) => {
         </div>
         )
       }
-    </div>
+    </form>
   );
 };
 
