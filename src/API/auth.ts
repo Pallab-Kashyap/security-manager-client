@@ -68,7 +68,7 @@ const logout = async () => {
 
 const deleteUser = async () => {
     try {
-        await axiosInstance.get('/user/logout')
+        await axiosInstance.delete('/user/delete')
         return true
     } catch (error) {
         return false
