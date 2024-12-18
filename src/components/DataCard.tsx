@@ -18,11 +18,11 @@ interface DataProps {
   setUpdate: React.Dispatch<React.SetStateAction<Data | null>>;
 }
 
-const DisplayOnHover = ({ content }: { content: string }) => {
+const DisplayOnHover = ({ content, flag = false }: { content: string, flag?: boolean }) => {
 
   const handleCopy = (text: string) => {
     window.navigator.clipboard.writeText(text);
-    toast(`Copid ${text}`, {
+    toast(`${flag ? 'Password copied' : text}`, {
       autoClose: 1000,
       hideProgressBar: true,
     });
@@ -73,12 +73,12 @@ const DataCard: FC<DataProps> = ({ data, setIsAddData, setUpdate }) => {
   })
   };
 
-  const handleCopy = (text: string) => {
+  const handleCopy = (text: string, flag?: boolean) => {
     window.navigator.clipboard.writeText(text);
-    toast(`Copid ${text}`, {
+    toast(`${flag ? 'Password copied' : `Copied ${text}`}`, {
       autoClose: 1000,
       hideProgressBar: true,
-    });
+    });;
   };
 
   return (
@@ -127,13 +127,13 @@ const DataCard: FC<DataProps> = ({ data, setIsAddData, setUpdate }) => {
             <div className="flex justify-between">
               <p
                 onClick={() => {
-                  showPassword && handleCopy(data.username);
+                  handleCopy(data.password, true);
                 }}
                 className="text-lg max-w-[25ch] sm:max-w-[28ch] break-words sm:truncate"
               >
                 {showPassword ? data.password : "********"}
               </p>
-              {showPassword && <DisplayOnHover content={data.password} />}
+              {showPassword && <DisplayOnHover content={data.password} flag={true} />}
 
               <button
                 onClick={() => {

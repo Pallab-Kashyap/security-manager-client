@@ -30,7 +30,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ data, onSearchResults }) => {
     <div className="flex flex-col items-center sm:min-w-96 flex-1">
       <input
         type="text"
-        placeholder="Search by site"
+        placeholder="Search"
         value={query}
         onChange={handleSearch}
         className="border border-gray-300 p-[6px] px-2 sm:p-2 rounded-lg w-full max-w-md shadow-sm focus:ring-2 focus:ring-blue-400"

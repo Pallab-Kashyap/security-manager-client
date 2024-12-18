@@ -42,11 +42,12 @@ const UserProfile: FC<User> = ({ username }) => {
     >
       <div className="sm:flex gap-2 items-center">
         <div
-          className="p-4 bg-white rounded-full"
-          style={{
-            background: "linear-gradient(to right, #e0c3fc, #8ec5fc)",
-          }}
-        ></div>
+          className={`rounded-full`}
+        >
+          <img src={`https://avatar.iran.liara.run/username?username=${username}`} alt="Profile Picture" 
+            className="h-8"
+          />
+        </div>
         <p className="mb-1 hidden sm:block">{username}</p>
       </div>
       <div
@@ -60,10 +61,10 @@ const UserProfile: FC<User> = ({ username }) => {
             {username}
           </p>
           <button onClick={handleLogout} className="mb-1">
-            logout
+            Logout
           </button>
-          <button onClick={handleDelete} className="text-red-500 block">
-            delete
+          <button onClick={handleDelete} className="text-red-500 block text-nowrap">
+            Delete Account
           </button>
         </div>
       </div>

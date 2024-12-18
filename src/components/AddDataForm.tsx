@@ -11,9 +11,11 @@ import { toast } from "react-toastify";
 const AddDataForm = ({
   data,
   setIsAddData,
+  setUpdate,
 }: {
   data: Data | null;
   setIsAddData: React.Dispatch<React.SetStateAction<boolean>>;
+  setUpdate: React.Dispatch<React.SetStateAction<Data | null>>;
 }) => {
   const [site, setSite] = useState("");
   const [password, setPassword] = useState("");
@@ -31,7 +33,15 @@ const AddDataForm = ({
       setSite(data.site);
       if (data.others) setOther(data.others);
     }
-  }, []);
+
+    return  () => {
+      setEmail("");
+      setPassword("");
+      setUsername('');
+      setSite('');
+      setOther('')
+    }
+  }, [data]);
 
   const handleClick = async () => {
     let newData = {
@@ -73,6 +83,7 @@ const AddDataForm = ({
         }
       }
     }
+    setUpdate(null)
   };
 
   return (
