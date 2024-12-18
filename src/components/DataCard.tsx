@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Data } from "../constants";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { deleteData } from "../API/data";
@@ -10,6 +10,7 @@ import { IoInformationCircleOutline } from "react-icons/io5";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { FaRegEye } from "react-icons/fa";
 import ConfirmDeleteToast from "./ConfirmDeleteToast";
+import { FiEdit } from "react-icons/fi";
 
 interface DataProps {
   data: Data;
@@ -29,7 +30,7 @@ const DisplayOnHover = ({ content }: { content: string }) => {
   return (
     <div
     onClick={() => handleCopy(content)}
-    className="absolute max-w-72 text-wrap break-words hidden sm:group-hover:block text-black bg-white px-2 y-3 rounded-lg border border-black z-10">
+    className="absolute max-w-72 text-wrap break-words hidden sm:group-hover:block text-black bg-white/50 backdrop-blur-lg backdrop-filter px-2 y-3 rounded-lg border border-blue-400 z-10">
       {content}
     </div>
   );
@@ -41,9 +42,13 @@ const DataCard: FC<DataProps> = ({ data, setIsAddData, setUpdate }) => {
   const [showOther, setShowOther] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
+  useEffect(() => {
+    return setUpdate(null)
+  },[])
+
   const handleUpdate = () => {
     setUpdate(data);
-    setIsAddData(true);
+    setIsAddData(prev => !prev);
   };
 
   const handleDelete = () => {
@@ -153,29 +158,29 @@ const DataCard: FC<DataProps> = ({ data, setIsAddData, setUpdate }) => {
             </p>
 
             <div
-              className={`absolute max-w-80 text-wrap break-words hidden sm:group-hover:block text-black bg-white px-2 y-3 rounded-lg border border-black`}
+              className={`absolute max-w-80 text-wrap break-words hidden sm:group-hover:block text-black bg-white/50 backdrop-blur-lg backdrop-filter px-2  rounded-lg border border-blue-400 `}
             >
               {data.others || "No info"}
             </div>
 
             {showOther && (
               <div
-                className={`absolute max-w-80 text-wrap break-words text-black bg-white px-2 y-3 rounded-lg border border-black`}
+                className={`absolute max-w-80 text-wrap break-words text-black bg-white/50 backdrop-blur-lg backdrop-filter px-2  rounded-lg border border-blue-400 `}
               >
                 {data.others || "No info"}
               </div>
             )}
           </div>
-          <div className=" space-x-2 flex items-center">
+          <div className="flex gap-2 items-center text-lg ">
             <button
               onClick={handleUpdate}
-              className="border-2 border-black text-sm px-2 h-6 rounded-md"
+              className="hover:text-xl "
             >
-              Edit
+              <FiEdit />
             </button>
             <button
               onClick={handleDelete}
-              className="border-2 border-black text-sm px-3 h-6 rounded-md text-red-600 "
+              className="hover:text-xl hover:text-red-600 pl-1 hover:px-px"
             >
               <RiDeleteBin6Line />
             </button>

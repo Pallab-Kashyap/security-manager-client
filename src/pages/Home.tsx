@@ -13,6 +13,7 @@ import "react-toastify/dist/ReactToastify.css";
 import SearchBar from "../components/SearchBar";
 import { logout } from "../API/auth";
 import UserProfile from "../components/UserProfile";
+import Cookies from "js-cookie";
 
 const Home = () => {
   let data = useSelector((state: RootState) => state.data);
@@ -21,6 +22,9 @@ const Home = () => {
   const [update, setUpdate] = useState<Data | null>(null);
   const [isAddData, setIsAddData] = useState(false);
   const [searchResults, setSearchResults] = useState<Data[] | null>(null);
+  const username = Cookies.get('username')
+
+  if(!username || username.length === 0) return navigate('/login')
 
   useEffect(() => {
     (async () => {
@@ -45,11 +49,9 @@ const Home = () => {
     setSearchResults(results);
   };
 
-  let username = "UserName";
-
   return (
     <div
-      onClick={(e) => {e.currentTarget.id === 'home' && window.innerWidth > 640 && setIsAddData(false)}}  
+      // onClick={(e) => {e.currentTarget.id === 'home' && window.innerWidth > 640 && setIsAddData(false)}}  
       id="home"
     className="flex flex-col px-4 sm:px-10   py-5 min-h-screen">
       <ToastContainer autoClose={3000} position="top-right" />
@@ -103,7 +105,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="grid sm:grid-cols-3 gap-10 flex-1 justify-center">
+      <div className="sm:grid grid-cols-3 gap-10 space-y-6 sm:space-y-0 flex-1 justify-center ">
         {searchResults && searchResults.length > 0 ? (
           searchResults.map((data) => (
             <DataCard

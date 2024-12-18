@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router'
 import background from '../../assets/cloudebackground.jpg'
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import Cookies from 'js-cookie'
 
 const Login = () => {
 
@@ -18,6 +19,7 @@ const Login = () => {
     const res = await login(Username, passwords)
     if(res.status){
       dispatch(addUser(res))
+      Cookies.set("username", Username, { expires: 1, path: "/"}) 
       navigate('/')
     }
     else toast.error(res.message)

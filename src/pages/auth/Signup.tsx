@@ -7,6 +7,7 @@ import background from '../../assets/cloudebackground.jpg'
 
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import Cookies from 'js-cookie'
 
 const Signup = () => {
 
@@ -18,6 +19,7 @@ const Signup = () => {
 
     if(res.message){
       dispatch(addUser(res))
+      Cookies.set("username", Username, { expires: 1, path: "/"}) 
       navigate('/')
     }
     else toast.error(res.message)

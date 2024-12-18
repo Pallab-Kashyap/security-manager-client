@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import { deleteUser, logout } from "../API/auth";
 import { toast } from "react-toastify";
 import ConfirmDeleteToast from "./ConfirmDeleteToast";
+import Cookies from "js-cookie";
 
 interface User {
   username: string;
@@ -17,6 +18,7 @@ const UserProfile: FC<User> = ({ username }) => {
 
   const handleLogout = () => {
     logout();
+    Cookies.remove('username', {path: "/"})
     navigate("/login");
   };
 
@@ -36,7 +38,7 @@ const UserProfile: FC<User> = ({ username }) => {
   return (
     <div
       onClick={() => { setShowDisplayMenu((prev) => !prev) }}
-      className="group relative z-20"
+      className="group relative z-20 "
     >
       <div className="sm:flex gap-2 items-center">
         <div
@@ -50,7 +52,7 @@ const UserProfile: FC<User> = ({ username }) => {
       <div
         className={`${
           !showDisplayMenu && `hidden`
-        } sm:group-hover:block absolute text-black rounded-lg right-0`}
+        } sm:group-hover:block absolute text-black rounded-lg right-0 min-w-28 sm:min-w-40`}
       >
         <div className="bg-transparent h-3"></div>
         <div className="bg-white rounded-lg p-3">
