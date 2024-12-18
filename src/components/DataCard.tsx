@@ -9,6 +9,7 @@ import { deleteOne } from "../context/features/dataSlice";
 import { IoInformationCircleOutline } from "react-icons/io5";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { FaRegEye } from "react-icons/fa";
+import ConfirmDeleteToast from "./ConfirmDeleteToast";
 
 interface DataProps {
   data: Data;
@@ -45,17 +46,26 @@ const DataCard: FC<DataProps> = ({ data, setIsAddData, setUpdate }) => {
     setIsAddData(true);
   };
 
-  const handleDelete = async () => {
+  const handleDelete = () => {
     if (!(data && data._id)) return;
-    const res = await deleteData(data._id);
+    const id = data._id
 
-    if (res) {
-      toast.success("Data deleted successfully");
-      dispatch(deleteOne(data._id));
-    } else {
-      toast.error("Unauthorized");
-      navigate("login");
+    const cb = async(id: string) => {
+      
+      const res = await deleteData(id);
+      
+      if (res) {
+        toast.success("Data deleted successfully");
+        dispatch(deleteOne(id));
+      } else {
+        toast.error("Unauthorized");
+        navigate("login");
+      } 
     }
+    
+  toast(<ConfirmDeleteToast cb={() => cb(id)} />,{
+    autoClose: false  
+  })
   };
 
   const handleCopy = (text: string) => {
@@ -69,7 +79,7 @@ const DataCard: FC<DataProps> = ({ data, setIsAddData, setUpdate }) => {
   return (
     <div
       key={data._id}
-      className="h-fit w-fit p-3 flex-1 text-black rounded-xl hover:shadow-lg shadow-violet-400 bg-gradient-to-tr from-white via-pink-100 to-purple-400 sm:w-full"
+      className="h-fit p-3 flex-1 text-black rounded-xl hover:shadow-lg shadow-violet-400 bg-gradient-to-tr from-white via-pink-100 to-purple-400 "
       style={{
         boxShadow: "0px 8px 15px rgba(0, 0, 0, 0.1)",
         background: "linear-gradient(to right, #e0c3fc, #8ec5fc)",

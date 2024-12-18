@@ -1,6 +1,8 @@
 import { FC, useState } from "react";
 import { useNavigate } from "react-router";
 import { deleteUser, logout } from "../API/auth";
+import { toast } from "react-toastify";
+import ConfirmDeleteToast from "./ConfirmDeleteToast";
 
 interface User {
   username: string;
@@ -19,15 +21,21 @@ const UserProfile: FC<User> = ({ username }) => {
   };
 
   const handleDelete = () => {
-    deleteUser()
-    navigate("/signup");
+
+    const cb = () => {
+      deleteUser()
+      toast.success('Account Deleted')
+      navigate("/signup");
+    }
+
+    toast(<ConfirmDeleteToast cb={cb} />,{
+      autoClose: false  
+    })
   };
 
   return (
     <div
-      onClick={() => { 
-        console.log(showDisplayMenu);
-        setShowDisplayMenu((prev) => !prev) }}
+      onClick={() => { setShowDisplayMenu((prev) => !prev) }}
       className="group relative z-20"
     >
       <div className="sm:flex gap-2 items-center">

@@ -49,7 +49,7 @@ const Home = () => {
 
   return (
     <div
-      // onClick={(e) => {e.currentTarget.id === 'home' && setIsAddData(false)}}  
+      onClick={(e) => {e.currentTarget.id === 'home' && window.innerWidth > 640 && setIsAddData(false)}}  
       id="home"
     className="flex flex-col px-4 sm:px-10   py-5 min-h-screen">
       <ToastContainer autoClose={3000} position="top-right" />
