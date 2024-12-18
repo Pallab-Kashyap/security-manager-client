@@ -4,7 +4,7 @@ import loginIcon from "../assets/login.png";
 import { Link } from "react-router";
 import Input from "./Input";
 
-type auth = "signup" | "login";
+type auth = "Sign Up" | "Login";
 
 interface AuthType {
   type: auth;
@@ -52,9 +52,9 @@ const AuthCard: FC<AuthType> = ({ type, handleSubmit }) => {
           e.preventDefault()
           handleSubmit(username, password)}}
         className="text-center w-full bg-black text-white py-2 rounded-lg mt-2"
-      >Submit</button>
+      >{`${type}`}</button>
        {
-        type === 'login' ? (
+        type === 'Login' ? (
             <div className="text-center">
                 <p
                     className="text-black font-semibold"

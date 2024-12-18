@@ -32,7 +32,7 @@ const Signup = () => {
             <img src={background} alt=""
         className='h-screen w-full  object-cover'
       />
-      <AuthCard type='signup' handleSubmit={handleSubmit}/>
+      <AuthCard type='Sign Up' handleSubmit={handleSubmit}/>
     </div>
   )
 }

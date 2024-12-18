@@ -34,7 +34,7 @@ const Login = () => {
       <img src={background} alt=""
         className='h-screen w-full  object-cover'
       />
-      <AuthCard type='login' handleSubmit={handleSubmit}/>
+      <AuthCard type='Login' handleSubmit={handleSubmit}/>
     </div>
     </>
   )

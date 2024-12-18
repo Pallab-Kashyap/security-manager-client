@@ -16,7 +16,7 @@ const ConfirmDeleteToast = ({cb}: {cb: () => void}) => {
         Delete
       </button>
       <button
-        onClick={() => toast.dismiss()} // Close the toast on cancel
+        onClick={() => toast.dismiss()}
         className="bg-gray-300 text-black h-fit px-3 py-1 rounded"
       >
         Cancel
