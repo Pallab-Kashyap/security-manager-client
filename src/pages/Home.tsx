@@ -24,7 +24,11 @@ const Home = () => {
   const [searchResults, setSearchResults] = useState<Data[] | null>(null);
   const username = Cookies.get('username')
 
-  if(!username || username.length === 0) return navigate('/login')
+  if(!username || username.length === 0){
+    navigate('/login')
+    return 
+
+  }
 
   useEffect(() => {
     (async () => {
