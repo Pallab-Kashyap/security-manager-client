@@ -24,12 +24,14 @@ const Home = () => {
   const [searchResults, setSearchResults] = useState<Data[] | null>(null);
   const username = Cookies.get('username')
 
-  if(!username || username.length === 0){
-    navigate('/login')
-    return 
-  }
-
+  
   useEffect(() => {
+
+    if(!username || username.length === 0){
+      navigate('/login')
+      return 
+    }
+
     (async () => {
       if (!data || data.length === 0) {
         const res = await getData();
@@ -62,7 +64,7 @@ const Home = () => {
         <h1 className="text-2xl sm:text-4xl w-fit h-12 font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-transparent bg-clip-text">
           Security Manager
         </h1>
-        <UserProfile username={username} logout={logout} delete={logout} />
+        <UserProfile username={username || 'anonymous'} logout={logout} delete={logout} />
       </nav>
 
       <div className="flex justify-between items-start sm:mb-10 mb-3">
