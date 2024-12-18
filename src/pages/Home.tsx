@@ -27,7 +27,6 @@ const Home = () => {
   if(!username || username.length === 0){
     navigate('/login')
     return 
-
   }
 
   useEffect(() => {
