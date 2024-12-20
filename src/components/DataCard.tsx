@@ -22,7 +22,7 @@ const DisplayOnHover = ({ content, flag = false }: { content: string, flag?: boo
 
   const handleCopy = (text: string) => {
     window.navigator.clipboard.writeText(text);
-    toast(`${flag ? 'Password copied' : text}`, {
+    toast(`${flag ? 'Password copied' : `Copid ${text}`}`, {
       autoClose: 1000,
       hideProgressBar: true,
     });
