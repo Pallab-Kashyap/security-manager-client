@@ -28,7 +28,11 @@ const AuthCard: FC<AuthType> = ({ type, handleSubmit }) => {
     }
 
   return (
-    <form className="absolute bg-white/40 shadow-lg max-w-80 sm:max-w-96 bg-white text-black h-fit space-y-5 p-4 py-8 sm:p-8 rounded-xl">
+    <form 
+      onSubmit={(e) => {
+        e.preventDefault()
+        handleSubmit(username, password)}}
+    className="absolute bg-white/40 shadow-lg max-w-80 sm:max-w-96 bg-white text-black h-fit space-y-5 p-4 py-8 sm:p-8 rounded-xl">
       <div className="flex place-content-center">
         <img src={loginIcon} alt="" className="h-10" />
       </div>
