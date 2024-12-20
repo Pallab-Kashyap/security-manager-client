@@ -3,6 +3,7 @@ import { FC, useState } from "react";
 import loginIcon from "../assets/login.png";
 import { Link } from "react-router";
 import Input from "./Input";
+import { toast } from "react-toastify";
 
 type auth = "Sign Up" | "Login";
 
@@ -15,6 +16,16 @@ const AuthCard: FC<AuthType> = ({ type, handleSubmit }) => {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+
+    const handleForgetPassword = () => {
+      toast(<div>
+        Contact on <a
+          href="mailto:ankityadav11241@gamil.com"
+        className="text-blue-500 cursor-pointer">ankityadav11241@gamil.com</a>
+      </div>, {
+        autoClose: false
+      })
+    }
 
   return (
     <form className="absolute bg-white/40 shadow-lg max-w-80 sm:max-w-96 bg-white text-black h-fit space-y-5 p-4 py-8 sm:p-8 rounded-xl">
@@ -35,16 +46,16 @@ const AuthCard: FC<AuthType> = ({ type, handleSubmit }) => {
       >
         <Input type="text" placeholder="Username" className="" value={username} setValue={setUsername}/>
         <Input type="Password" placeholder="Password" className="" value={password} setValue={setPassword}/>
-      {/* {
-        type === 'login' && (
+      {
+        type === 'Login' && (
             <div className="text-end">
-                <Link
-                    to='/login'
-                    className="text-black font-semibold"
-                >Forget Password ?</Link>
+                <button
+                    onClick={handleForgetPassword}
+                    className="text-black font-semibold text-sm"
+                >Forget Password ?</button>
             </div>
         )
-      } */}
+      }
       </div>
       <button
         type="submit"
