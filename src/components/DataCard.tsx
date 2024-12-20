@@ -30,7 +30,7 @@ const DisplayOnHover = ({ content, flag = false }: { content: string, flag?: boo
   return (
     <div
     onClick={() => handleCopy(content)}
-    className="absolute max-w-72 text-wrap break-words hidden sm:group-hover:block text-black bg-white/50 backdrop-blur-lg backdrop-filter px-2 y-3 rounded-lg border border-blue-400 z-10">
+    className="absolute max-w-72 text-wrap break-words hidden sm:group-hover:block text-black bg-white/90 backdrop-blur-lg backdrop-filter px-2 pb-1 rounded-lg border border-blue-400 z-10">
       {content}
     </div>
   );
@@ -158,14 +158,14 @@ const DataCard: FC<DataProps> = ({ data, setIsAddData, setUpdate }) => {
             </p>
 
             <div
-              className={`absolute max-w-80 text-wrap break-words hidden sm:group-hover:block text-black bg-white/50 backdrop-blur-lg backdrop-filter px-2  rounded-lg border border-blue-400 `}
+              className={`absolute max-w-80 text-wrap break-words hidden sm:group-hover:block text-black bg-white/90 backdrop-blur-lg backdrop-filter px-2 pb-1  rounded-lg border border-blue-400 `}
             >
               {data.others || "No info"}
             </div>
 
             {showOther && (
               <div
-                className={`absolute max-w-80 text-wrap break-words text-black bg-white/50 backdrop-blur-lg backdrop-filter px-2  rounded-lg border border-blue-400 `}
+                className={`absolute max-w-80 text-wrap break-words text-black bg-white/90 backdrop-blur-lg backdrop-filter px-2 pb-1  rounded-lg border border-blue-400 `}
               >
                 {data.others || "No info"}
               </div>
