@@ -33,7 +33,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ data, onSearchResults }) => {
         placeholder="Search"
         value={query}
         onChange={handleSearch}
-        className="border border-gray-300 p-[6px] px-2 sm:p-2 rounded-lg w-full max-w-md shadow-sm focus:ring-2 focus:ring-blue-400"
+        className="border border-gray-300 p-[6px] px-2 sm:p-2 rounded-lg w-full max-w-md shadow-sm focus:ring-2 focus:ring-blue-400 bg-black"
       />
     </div>
   );
