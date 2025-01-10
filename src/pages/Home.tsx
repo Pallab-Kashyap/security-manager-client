@@ -60,7 +60,7 @@ const Home = () => {
     >
       <ToastContainer autoClose={3000} position="top-right" />
       <nav className="flex justify-between items-center sm:mb-3 ">
-        <h1 className="text-2xl sm:text-4xl w-fit h-12 font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-transparent bg-clip-text">
+        <h1 className="text-2xl sm:text-4xl w-fit h-12 font-bold bg-gradient-to-r from-white via-gray-300 to-gray-800 text-transparent bg-clip-text">
           Security Manager
         </h1>
         <UserProfile
@@ -81,7 +81,7 @@ const Home = () => {
             setIsAddData((prev) => !prev);
             setUpdate(null);
           }}
-          className=" hidden sm:block bg-gradient-to-tr from-purple-400 via-pink-500 to-red-500 text-white whitespace-nowrap w-20 rounded-md font-semibold text-sm  h-10"
+          className=" hidden sm:block bg-gradient-to-r from-white via-gray-100 to-gray-200 hover:from-gray-50 hover:via-gray-150 hover:to-gray-300 transition-colors duration-300 text-black whitespace-nowrap w-20 rounded-md font-semibold text-sm  h-10"
         >
           {isAddData ? "Cancel" : "Add Data"}
         </button>
